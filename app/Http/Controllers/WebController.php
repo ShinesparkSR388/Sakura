@@ -17,9 +17,16 @@ class WebController extends Controller{
         $user->password = $request->input('pass');
         $user->age = $request->input('age');
         $user->username = $request->input('user');
+        $user->gender = true;
+        $user->photo = $request->input('foto');
+        $user->country = $request->input('country');
+        $user->address = $request->input('address');
+        $user->send_address = $request->input('sendAddress');
+        $user->refer_code = $request->input('refCode');
+        $user->role = $request->input('role');
 
         $user->save();
         
-        return response()->json($info);
+        //return response()->json($info);
     }
 }

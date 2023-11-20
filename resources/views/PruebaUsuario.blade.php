@@ -33,6 +33,31 @@
                 <div class="col">
                     <input class="form-control" type="password" name="pass" placeholder="Password">
                 </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col">
+                    <input class="form-control" type="text" name="foto" placeholder="Foto">
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="country" placeholder="country">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col">
+                    <input class="form-control" type="text" name="address" placeholder="address">
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col">
+                    <input class="form-control" type="text" name="sendAddress" placeholder="Send Address">
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="refCode" placeholder="Ref code">
+                </div>
+                <div class="col">
+                    <input class="form-control" type="text" name="role" placeholder="role">
+                </div>
                 <input class="btn btn-success mt-3" type="submit" value="Guardar">
             </div>
         </form>
