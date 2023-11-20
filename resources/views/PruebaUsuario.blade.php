@@ -14,21 +14,21 @@
             @csrf
             <div class="row d-flex justify-content-center">
                 <div class="col">
-                    <input class="form-control" type="text" name="name" placeholder="Nombre">
+                    <input class="form-control" type="text" name="name" placeholder="Name">
                 </div>
                 <div class="col">
-                    <input class="form-control" type="text" name="lastname" placeholder="Apellido">
+                    <input class="form-control" type="text" name="email" placeholder="example@example.com">
                 </div>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col">
-                    <input class="form-control" type="text" name="age" placeholder="Edad">
+                    <input class="form-control" type="text" name="age" placeholder="Age">
                 </div>
                 <div class="col"></div>
             </div>
             <div class="row d-flex justify-content-center">
                 <div class="col">
-                    <input class="form-control" type="text" name="user" placeholder="Nombre de usuario">
+                    <input class="form-control" type="text" name="user" placeholder="Username">
                 </div>
                 <div class="col">
                     <input class="form-control" type="password" name="pass" placeholder="Password">
