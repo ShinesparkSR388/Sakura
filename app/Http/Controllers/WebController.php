@@ -10,6 +10,6 @@ class WebController extends Controller{
     public function store(Request $request)
     {
         $info = $request->all();
-        var_dump($info);
+        return response()->json($info);
     }
 }
