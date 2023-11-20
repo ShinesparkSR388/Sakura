@@ -13,7 +13,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
+       return view("PruebaUsuario");
     }
 
     /**
@@ -24,7 +25,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $info = $request->all();
+        var_dump($info);
     }
 
     /**

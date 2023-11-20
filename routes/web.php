@@ -17,5 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/registro', [UserController::class, 'index']);
+Route::post('/RegistroUsuario', [WebController::class, 'store']);
 
 Route::get('/home', [WebController::class, 'index']);

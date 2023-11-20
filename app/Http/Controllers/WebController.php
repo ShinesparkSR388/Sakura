@@ -5,6 +5,11 @@ use Illuminate\Http\Request;
 
 class WebController extends Controller{
     public function index(){
-        return view("home");
+        return view("PruebaUsuario");
+    }
+    public function store(Request $request)
+    {
+        $info = $request->all();
+        var_dump($info);
     }
 }
