@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use App\Models\User;
 
 class WebController extends Controller{
@@ -27,6 +28,25 @@ class WebController extends Controller{
 
         $user->save();
         
-        //return response()->json($info);
-    }
+    // return response()->json($info);
+
+
 }
+
+public function getAllUsersInfo()
+{
+    $users = User::all();
+
+    if ($users->isEmpty()) {
+        return response()->json(['error' => 'No hay usuarios disponibles'], 404);
+    }
+
+    return response()->json($users, 200);
+}
+
+
+}
+
+
+
+

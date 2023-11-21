@@ -21,3 +21,4 @@ Route::get('/registro', [UserController::class, 'index']);
 Route::post('/RegistroUsuario', [WebController::class, 'store']);
 
 Route::get('/home', [WebController::class, 'index']);
+Route::get('/users', [WebController::class, 'getAllUsersInfo']);
