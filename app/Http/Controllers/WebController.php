@@ -18,7 +18,7 @@ class WebController extends Controller{
 public function saveProduct(Request $request)
     {
 
-        $request->validate([
+        /*$request->validate([
             'code' => 'required|string',
             'name' => 'required|string',
             'category' => 'required|string',
@@ -28,20 +28,20 @@ public function saveProduct(Request $request)
             'sell_price' => 'required|numeric',
             'thumbnail' => 'required|string',
             'id_provider' => 'required|exists:providers,id',
-        ]);
+        ])
 
-        $imageUrl = $request->input('image');
+        $imageUrl = $request->input('image');*/
         $thumbnailUrl = $request->input('thumbnail');
 
         $product = products::create([
             'code' => $request->input('code'),
             'name' => $request->input('name'),
             'category' => $request->input('category'),
-            'image' => $imageUrl,
+            'image' => $request->input('image'),
             'stock' => $request->input('stock'),
             'price' => $request->input('price'),
             'sell_price' => $request->input('sell_price'),
-            'thumbnail' => $thumbnailUrl,
+            'tumbnail' => $request->input('tumbnail'),
             'id_provider' => $request->input('id_provider'),
         ]);
 

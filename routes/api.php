@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\providersController;
+use App\Http\Controllers\productsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,7 +33,8 @@ Route::put('/user/{id}', [UserController::class, 'update']);
 Route::get('paises',[WebController::class, 'countries']);
 
 //productos
-Route::post('RegistroProductos', [WebController::class, 'saveProductos']);
+Route::post('RegistroProductos', [WebController::class, 'saveProduct']);
+Route::post('Busqueda', [productsController::class, 'productSearch']);
 
 //proveedores
 Route::post('Proveedor', [providersController::class, 'store']);

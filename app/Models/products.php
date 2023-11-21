@@ -15,7 +15,7 @@ class products extends Model
         'stock',
         'price',
         'sell_price',
-        'thumbnail',
+        'tumbnail',
         'id_provider',
     ];
 
