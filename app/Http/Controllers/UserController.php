@@ -50,7 +50,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $id)
+    public function show($id)
     {
         $user = User::find($id);
 
@@ -76,9 +76,10 @@ class UserController extends Controller
         }
 
         $request->validate([
-            'name' => 'string',
+            'username' => 'string',
             'email' => 'email|unique:users,email,' . $user->id,
             'password' => 'min:6',
+            'name' => 'string',
             'age' => 'integer',
             'gender' => 'boolean',
             'photo' => 'string',
@@ -92,9 +93,10 @@ class UserController extends Controller
 
 
         $user->update([
-            'name' => $request->input('name'),
+            'username' => $request->input('username'),
             'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
+            'password' => $request->input('password'),
+            'name' => $request->input('name'),
             'age' => $request->input('age'),
             'gender' => $request->input('gender'),
             'photo' => $request->input('photo'),

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\providersController;
 use Illuminate\Http\Request;
@@ -23,15 +24,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //usuarios
 Route::post('RegistroUsuario', [WebController::class, 'store']);
 Route::get('Usuarios',[WebController::class, 'getAllUsersInfo']);
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::delete('/user/{id}', [UserController::class, 'destroy']);
+Route::put('/user/{id}', [UserController::class, 'update']);
 
 //solo paises
 Route::get('paises',[WebController::class, 'countries']);
 
 //productos
 Route::post('RegistroProductos', [WebController::class, 'saveProductos']);
-Route::get('/user/{id}', [UserController::class, 'show']);
-Route::delete('/user/{id}', [UserController::class, 'destroy']);
-Route::put('/users/{id}', [UserController::class, 'update']);
 
 //proveedores
 Route::post('Proveedor', [providersController::class, 'store']);

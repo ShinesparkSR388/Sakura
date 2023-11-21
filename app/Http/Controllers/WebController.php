@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\products;
 
 class WebController extends Controller{
     public function index(){
@@ -14,21 +15,20 @@ class WebController extends Controller{
         $user = new User();
 
         $user->username = $request->input('username');
-        $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->password = $request->input('pass');
+        $user->password = $request->input('password');
+        $user->name = $request->input('name');
         $user->age = $request->input('age');
-        $user->username = $request->input('user');
         $user->gender = true;
-        $user->photo = $request->input('foto');
+        $user->photo = $request->input('photo');
         $user->country = $request->input('country');
         $user->address = $request->input('address');
-        $user->send_address = $request->input('sendAddress');
-        $user->refer_code = $request->input('refCode');
-        $user->role = $request->input('role');
+        $user->send_address = $request->input('send_address');
+        $user->refer_code = "A";
+        $user->role = 0;
 
         $user->save();
-        
+
     // return response()->json($info);
 
 
@@ -52,7 +52,7 @@ public function getAllUsersInfo()
 
 public function saveProduct(Request $request)
     {
-        
+
         $request->validate([
             'code' => 'required|string',
             'name' => 'required|string',
@@ -67,8 +67,8 @@ public function saveProduct(Request $request)
 
         $imageUrl = $request->input('image');
         $thumbnailUrl = $request->input('thumbnail');
-    
-        $product = Product::create([
+
+        $product = products::create([
             'code' => $request->input('code'),
             'name' => $request->input('name'),
             'category' => $request->input('category'),
@@ -79,7 +79,7 @@ public function saveProduct(Request $request)
             'thumbnail' => $thumbnailUrl,
             'id_provider' => $request->input('id_provider'),
         ]);
-    
+
         return response()->json($product, 200);
     }
 
@@ -89,7 +89,7 @@ public function saveProduct(Request $request)
 
 public function countries()
 {
-    
+
     $paises = [
         ["nombre" => "Afganistán"],
         ["nombre" => "Albania"],
@@ -258,7 +258,7 @@ public function countries()
         ["nombre" => "Sudáfrica"],
         ["nombre" => "Sudán"]
     ];
-    
+
     return response()->json($paises, 200);
 }
 
