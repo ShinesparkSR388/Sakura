@@ -22,8 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //usuarios
-Route::post('RegistroUsuario', [WebController::class, 'store']);
-Route::get('Usuarios',[WebController::class, 'getAllUsersInfo']);
+Route::post('Usuario', [UserController::class, 'store']);
+Route::get('Usuario',[UserController::class, 'getAllUsersInfo']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::delete('/user/{id}', [UserController::class, 'destroy']);
 Route::put('/user/{id}', [UserController::class, 'update']);

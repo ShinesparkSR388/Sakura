@@ -42,6 +42,8 @@ class UserController extends Controller
         $user->role = 0;
 
         $user->save();
+
+        // return response()->json($info);
     }
 
     /**
@@ -50,6 +52,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function getAllUsersInfo()
+    {
+        $users = User::all();
+
+        if ($users->isEmpty()) {
+            return response()->json(['error' => 'No hay usuarios disponibles'], 404);
+        }
+
+        return response()->json($users, 200);
+    }
+
     public function show($id)
     {
         $user = User::find($id);
@@ -76,21 +89,17 @@ class UserController extends Controller
         }
 
         $request->validate([
-            'username' => 'string',
-            'email' => 'email|unique:users,email,' . $user->id,
-            'password' => 'min:6',
-            'name' => 'string',
-            'age' => 'integer',
-            'gender' => 'boolean',
-            'photo' => 'string',
-            'country' => 'string',
-            'address' => 'string',
-            'send_address' => 'string',
-            'refer_code' => 'string',
-            'role' => 'string',
-
+            'username' => 'required|string|unique:users,username,' . $user->id,
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'required|min:6',
+            'name' => 'required|string|unique:users,name,' . $user->id,
+            'age' => 'required|integer',
+            'gender' => 'required|boolean',
+            'photo' => 'required|string',
+            'country' => 'required|string',
+            'address' => 'required|string',
+            'send_address' => 'required|string'
         ]);
-
 
         $user->update([
             'username' => $request->input('username'),
@@ -102,13 +111,11 @@ class UserController extends Controller
             'photo' => $request->input('photo'),
             'country' => $request->input('country'),
             'address' => $request->input('address'),
-            'send_address' => $request->input('send_address'),
-            'refer_code' => $request->input('refer_code'),
-            'role' => $request->input('role'),
-
+            'send_address' => $request->input('send_address')
         ]);
 
-        return response()->json(['message' => 'Usuario actualizado exitosamente', 'user' => $user], 200);
+        return response()->json(['message' => 'Actualizado correctamente'], 404);
+
     }
 
 

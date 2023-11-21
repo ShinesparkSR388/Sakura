@@ -10,44 +10,9 @@ class WebController extends Controller{
     public function index(){
         return view("PruebaUsuario");
     }
-    public function store(Request $request)
-    {
-        $user = new User();
 
-        $user->username = $request->input('username');
-        $user->email = $request->input('email');
-        $user->password = $request->input('password');
-        $user->name = $request->input('name');
-        $user->age = $request->input('age');
-        $user->gender = true;
-        $user->photo = $request->input('photo');
-        $user->country = $request->input('country');
-        $user->address = $request->input('address');
-        $user->send_address = $request->input('send_address');
-        $user->refer_code = "A";
-        $user->role = 0;
-
-        $user->save();
-
-    // return response()->json($info);
-
-
-}
 
 //mostrar usuarios
-public function getAllUsersInfo()
-{
-    $users = User::all();
-
-    if ($users->isEmpty()) {
-        return response()->json(['error' => 'No hay usuarios disponibles'], 404);
-    }
-
-    return response()->json($users, 200);
-}
-
-
-
 
 
 public function saveProduct(Request $request)
