@@ -33,7 +33,7 @@ Route::put('/user/{id}', [UserController::class, 'update']);
 Route::get('paises',[WebController::class, 'countries']);
 
 //productos
-Route::post('RegistroProductos', [WebController::class, 'saveProduct']);
+Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
 Route::post('Busqueda', [productsController::class, 'productSearch']);
 
 //proveedores

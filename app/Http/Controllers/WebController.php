@@ -15,38 +15,7 @@ class WebController extends Controller{
 //mostrar usuarios
 
 
-public function saveProduct(Request $request)
-    {
 
-        /*$request->validate([
-            'code' => 'required|string',
-            'name' => 'required|string',
-            'category' => 'required|string',
-            'image' => 'required|string',
-            'stock' => 'required|integer',
-            'price' => 'required|numeric',
-            'sell_price' => 'required|numeric',
-            'thumbnail' => 'required|string',
-            'id_provider' => 'required|exists:providers,id',
-        ])
-
-        $imageUrl = $request->input('image');*/
-        $thumbnailUrl = $request->input('thumbnail');
-
-        $product = products::create([
-            'code' => $request->input('code'),
-            'name' => $request->input('name'),
-            'category' => $request->input('category'),
-            'image' => $request->input('image'),
-            'stock' => $request->input('stock'),
-            'price' => $request->input('price'),
-            'sell_price' => $request->input('sell_price'),
-            'tumbnail' => $request->input('tumbnail'),
-            'id_provider' => $request->input('id_provider'),
-        ]);
-
-        return response()->json($product, 200);
-    }
 
 //eliminar
 

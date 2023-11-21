@@ -16,4 +16,25 @@ class productsController extends Controller
         }
         return response()->json($book, 200);
     }
-}
+
+    public function saveProduct(Request $request)
+    {
+        $product = new products();
+
+        $product->code = $request->input('code');
+        $product->name = $request->input('name');
+        $product->category = $request->input('category');
+        $product->image = $request->input('image');
+        $product->stock = $request->input('stock');
+        $product->price = $request->input('price');
+        $product->sell_price = $request->input('sell_price');
+        $product->thumbnail = $request->input('thumbnail');
+        $product->id_provider = $request->input('id_provider');
+    
+        $product->save();
+    
+        return response()->json($product, 201);
+    }
+    }
+    
+
