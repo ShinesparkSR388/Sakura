@@ -10,7 +10,7 @@ class productsController extends Controller
 {
     //
     public function productSearch(Request $request){
-        $book = products::where('name', 'like', '%' . $request->input('varSearch') . '%')->get();
+        $book = products::where($request->input('typeSearch'), 'like', '%' . $request->input('varSearch') . '%')->get();
          if(!$book){
             return response()->json(['error' => 'Producto no encontrado'], 404);
         }
