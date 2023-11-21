@@ -23,3 +23,7 @@ Route::post('RegistroUsuario', [WebController::class, 'store']);
 Route::get('Usuarios',[WebController::class, 'getAllUsersInfo']);
 
 Route::get('paises',[WebController::class, 'countries']);
+Route::post('RegistroProductos', [WebController::class, 'saveProductos']);
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::delete('/user/{id}', [UserController::class, 'destroy']);
+Route::put('/users/{id}', [UserController::class, 'update']);

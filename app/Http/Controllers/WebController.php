@@ -34,6 +34,7 @@ class WebController extends Controller{
 
 }
 
+//mostrar usuarios
 public function getAllUsersInfo()
 {
     $users = User::all();
@@ -44,6 +45,55 @@ public function getAllUsersInfo()
 
     return response()->json($users, 200);
 }
+
+
+
+
+
+public function saveProduct(Request $request)
+    {
+        
+        $request->validate([
+            'code' => 'required|string',
+            'name' => 'required|string',
+            'category' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'stock' => 'required|integer',
+            'price' => 'required|numeric',
+            'sell_price' => 'required|numeric',
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'id_provider' => 'required|exists:providers,id',
+        ]);
+
+        // Procesa la imagen principal
+        $imagePath = $request->file('image')->store('images', 'public');
+        $imageUrl = Storage::url($imagePath);
+
+        
+        $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+        $thumbnailUrl = Storage::url($thumbnailPath);
+
+        
+        $product = Product::create([
+            'code' => $request->input('code'),
+            'name' => $request->input('name'),
+            'category' => $request->input('category'),
+            'image' => $imageUrl,
+            'stock' => $request->input('stock'),
+            'price' => $request->input('price'),
+            'sell_price' => $request->input('sell_price'),
+            'thumbnail' => $thumbnailUrl,
+            'id_provider' => $request->input('id_provider'),
+        ]);
+
+       
+        return response()->json($product, 200);
+    }
+
+//eliminar
+
+
+
 public function countries()
 {
     
