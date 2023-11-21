@@ -26,8 +26,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $info = $request->all();
-        var_dump($info);
+        $user = new User();
+
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->name = $request->input('name');
+        $user->age = $request->input('age');
+        $user->gender = true;
+        $user->photo = $request->input('photo');
+        $user->country = $request->input('country');
+        $user->address = $request->input('address');
+        $user->send_address = $request->input('send_address');
+        $user->refer_code = "A";
+        $user->role = 0;
+
+        $user->save();
     }
 
     /**
@@ -36,7 +50,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $id)
     {
         $user = User::find($id);
 
@@ -73,10 +87,10 @@ class UserController extends Controller
             'send_address' => 'string',
             'refer_code' => 'string',
             'role' => 'string',
-           
+
         ]);
 
-       
+
         $user->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -89,12 +103,12 @@ class UserController extends Controller
             'send_address' => $request->input('send_address'),
             'refer_code' => $request->input('refer_code'),
             'role' => $request->input('role'),
-            
+
         ]);
 
         return response()->json(['message' => 'Usuario actualizado exitosamente', 'user' => $user], 200);
     }
-    
+
 
     /**
      * Remove the specified resource from storage.

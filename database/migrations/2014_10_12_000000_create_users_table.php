@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('age');
             $table->boolean('gender');
-            $table->longText('photo');
+            $table->longText('photo')->nullable();
             $table->string('country');
             $table->string('address');
             $table->string('send_address');

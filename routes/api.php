@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\providersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +20,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//usuarios
 Route::post('RegistroUsuario', [WebController::class, 'store']);
 Route::get('Usuarios',[WebController::class, 'getAllUsersInfo']);
 
+//solo paises
 Route::get('paises',[WebController::class, 'countries']);
+
+//productos
 Route::post('RegistroProductos', [WebController::class, 'saveProductos']);
 Route::get('/user/{id}', [UserController::class, 'show']);
 Route::delete('/user/{id}', [UserController::class, 'destroy']);
 Route::put('/users/{id}', [UserController::class, 'update']);
+
+//proveedores
+Route::post('Proveedor', [providersController::class, 'store']);
+Route::get('Proveedor', [providersController::class, 'show']);
+Route::put('Proveedor', [providersController::class, 'update']);//no implementado
+Route::delete('Proveedor', [providersController::class, 'delete']);//no implementado
