@@ -53,8 +53,8 @@ class UserController extends Controller
 
         $user->save();
 
-        $cupon->id_user = $user->id;
-        $cupon->save();
+        //$cupon->id_user = $user->id;
+        //$cupon->save();
         // return response()->json($info);
     }
 

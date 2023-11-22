@@ -24,7 +24,7 @@ class wishListController extends Controller
     public function wishlist($id){
         $lista = wishList::where('id_user', $id)->get();
         if(!$lista){
-           return response()->json(['error' => 'No se a agregado ningun producto a la lista de deseos'], 404);
+           return response()->json(['res' => false], 404);
        }
        return response()->json($lista, 200);
     }
