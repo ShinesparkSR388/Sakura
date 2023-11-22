@@ -65,5 +65,49 @@ class productsController extends Controller
 
     }
 
+    public function updateProducts(Request $request, $id)
+    {
+        $product = products::find($id);
+
+       
+        if (!$product) {
+            return response()->json(['error' => 'Producto no encontrado'], 404);
+        }
+
+        $request->validate([
+            'code' => 'required|string|unique:products,code,' . $product->id,
+            'name' => 'required|string|unique:products,name,' . $product->id,
+            'editorial' => 'required|string',
+            'author' => 'required|string',
+            'year' => 'required|integer',
+            'category' => 'required|string',
+            'image' => 'required|string',
+            'stock' => 'required|integer',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'sell_price' => 'required|numeric',
+            'id_provider' => 'required|exists:providers,id',
+        ]);
+
+        $product->update([
+            'code' => $request->input('code'),
+            'name' => $request->input('name'),
+            'editorial' => $request->input('editorial'),
+            'author' => $request->input('author'),
+            'year' => $request->input('year'),
+            'category' => $request->input('category'),
+            'image' => $request->input('image'),
+            'stock' => $request->input('stock'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'sell_price' => $request->input('sell_price'),
+            'id_provider' => $request->input('id_provider'),
+        ]);
     
+        return response()->json(['message' => 'Producto actualizado correctamente']);
+
+    }
+
+
+
 }

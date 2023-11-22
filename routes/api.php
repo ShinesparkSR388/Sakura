@@ -52,9 +52,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::get('/history-shopping/{id}',[salesController::class, 'shoppingHistory']);
 
         //carrito de compras
-        Route::get('/RegistroCar',[shoppingController::class, 'addToCart']);
+        Route::post('/RegistroCar',[shoppingController::class, 'addToCart']);
         Route::get('/Shopping/{id}',[shoppingController::class, 'showShopping']);
-        Route::get('/Shopping/Delete/{id}',[shoppingController::class, 'destroyShopping']);
+        Route::delete('/Shopping/Delete/{id}',[shoppingController::class, 'destroyShopping']);
 
 
         //cupones
@@ -62,6 +62,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
         //productos
         Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
+        Route::put('ActualizarProductos', [productsController::class, 'updateProducts']);
+
 
         //proveedores
         Route::post('Proveedor', [providersController::class, 'store']);
