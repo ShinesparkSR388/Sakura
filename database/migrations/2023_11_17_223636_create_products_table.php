@@ -17,13 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->string('category');
             $table->string('editorial');
             $table->string('author');
-            $table->integer('stock');
-            $table->longText('description');
+            $table->integer('year');
+            $table->string('category');
             $table->longText('image');
             $table->integer('stock');
+            $table->longText('description');
             $table->float('price', 8,2)->default(0);
             $table->float('sell_price', 8,2)->default(0);
             $table->unsignedBigInteger('id_provider');
