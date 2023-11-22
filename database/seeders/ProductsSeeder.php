@@ -17,7 +17,7 @@ class ProductsSeeder extends Seeder
 
     public function run()
     {
-       
+       $im1: ''
 
         \App\Models\products::create([
            
