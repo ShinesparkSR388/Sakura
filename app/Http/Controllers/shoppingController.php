@@ -31,7 +31,7 @@ class shoppingController extends Controller
 
 
 
-    public function showProducts(Request $request)
+    public function showShopping(Request $request)
     {
         $request->validate([
             'id_user' => 'required|exists:users,id',
@@ -45,7 +45,7 @@ class shoppingController extends Controller
         return response()->json($shoppingCartItems);
     }
 
-    public function destroyProduct($id){
+    public function destroyShopping($id){
       
         $shoppingCartItem = ShoppingCart::find($id);
 

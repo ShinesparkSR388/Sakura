@@ -51,6 +51,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         //Historial de compras
         Route::get('/history-shopping/{id}',[salesController::class, 'shoppingHistory']);
 
+        //carrito de compras
+        Route::get('/RegistroCar',[shoppingController::class, 'addToCart']);
+        Route::get('/Shopping/{id}',[shoppingController::class, 'showShopping']);
+        Route::get('/Shopping/Delete/{id}',[shoppingController::class, 'destroyShopping']);
+
+
         //cupones
         Route::get('Cupones', [cuponController::class, 'get']);
 
