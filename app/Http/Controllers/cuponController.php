@@ -18,4 +18,8 @@ class cuponController extends Controller
 
         return response()->json($pr, 200);
     }
+    public function createCupon(Request $request){
+        $cupon = new cupons();
+        $cupon->
+    }
 }
