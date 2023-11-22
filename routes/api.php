@@ -54,7 +54,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
         //carrito de compras
         Route::post('/RegistroCar',[shoppingController::class, 'addToCart']);
-        Route::get('/Shopping/{id}',[shoppingController::class, 'showShopping']);
+        Route::get('/Show/{id}',[shoppingController::class, 'show']);
         Route::delete('/Shopping/Delete/{id}',[shoppingController::class, 'destroyShopping']);
 
 

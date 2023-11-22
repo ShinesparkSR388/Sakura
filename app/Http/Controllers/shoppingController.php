@@ -29,19 +29,28 @@ class shoppingController extends Controller
            $shoppingCart->save();
     }
 
-
-
-    public function showShopping(Request $request)
+    public function show($id)
     {
-        $request->validate([
-            'id_user' => 'required|exists:users,id',
-        ]);
-    
-        $userId = $request->input('id_user');
-    
-        $shoppingCartItems = shoppingCar::where('id_user', $userId)->with('product')->get();
-        return response()->json($shoppingCartItems);
+        $carrito = shoppingCar::find($id);
+
+        if (!$carrito) {
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
+        return response()->json($carrito, 200);
     }
+
+
+    // public function showShopping(Request $request)
+    // {
+    //     $request->validate([
+    //         'id_user' => 'required|exists:users,id',
+    //     ]);
+    
+    //     $userId = $request->input('id_user');
+    
+    //     $shoppingCartItems = shoppingCar::where('id_user', $userId)->with('product')->get();
+    //     return response()->json($shoppingCartItems);
+    // }
 
     public function destroyShopping($id){ 
         $elementoLista = shoppingCar::where('id_user', $id)->delete();
