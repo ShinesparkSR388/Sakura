@@ -29,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     //solo paises
     Route::get('paises',[WebController::class, 'countries']);
 
+    Route::get('Productos', [productsController::class, 'showProducts']);
     Route::post('Busqueda', [productsController::class, 'productSearch']);
 //control de acceso (Privado)
     Route::group(['middleware' => ['auth:sanctum']], function(){
@@ -41,7 +42,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
         //productos
-        Route::post('RegistroProductos', [WebController::class, 'saveProduct']);
+Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
 
         //proveedores
         Route::post('Proveedor', [providersController::class, 'store']);
@@ -50,4 +51,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::delete('Proveedor', [providersController::class, 'delete']);//no implementado
     });
 
+//productos
 
