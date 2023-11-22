@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\providersController;
 use App\Http\Controllers\productsController;
+use App\Http\Controllers\salesController;
 use App\Models\cupons;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,4 +55,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::put('Proveedor', [providersController::class, 'update']);//no implementado
         Route::delete('Proveedor', [providersController::class, 'delete']);//no implementado
     });
+    //Venta de productos
+    Route::post('GuardarVenta',[salesController::class, 'saveSale']);
 
