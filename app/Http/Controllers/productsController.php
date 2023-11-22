@@ -35,6 +35,17 @@ class productsController extends Controller
     
         return response()->json($product, 201);
     }
-    }
-    
 
+
+
+    public function showProducts(Request $request)
+    {
+        $pr = products::all();
+
+        if ($pr->isEmpty()) {
+            return response()->json(['error' => 'No hay productos'], 404);
+        }
+
+        return response()->json($pr, 200);
+    }
+}

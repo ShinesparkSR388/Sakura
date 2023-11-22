@@ -34,6 +34,7 @@ Route::get('paises',[WebController::class, 'countries']);
 
 //productos
 Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
+Route::get('Productos', [productsController::class, 'showProducts']);
 Route::post('Busqueda', [productsController::class, 'productSearch']);
 
 //proveedores
