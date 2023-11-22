@@ -39,9 +39,7 @@ class shoppingController extends Controller
     
         $userId = $request->input('id_user');
     
-        $shoppingCartItems = shoppingCar::where('id_user', $userId)
-            ->with('product') 
-            ->get();
+        $shoppingCartItems = shoppingCar::where('id_user', $userId)->with('product')->get();
         return response()->json($shoppingCartItems);
     }
 
