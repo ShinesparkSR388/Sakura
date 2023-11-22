@@ -45,18 +45,8 @@ class shoppingController extends Controller
         return response()->json($shoppingCartItems);
     }
 
-    public function destroyShopping($id){
-      
-        $shoppingCartItem = ShoppingCart::find($id);
-
-        
-        if ($shoppingCartItem) {
-            $shoppingCartItem->delete();
-    
-            return response()->json(['message' => 'Elemento del carrito eliminado correctamente']);
-        } else {
-            return response()->json(['error' => 'Elemento del carrito no encontrado'], 404);
-        }
+    public function destroyShopping($id){ 
+        $elementoLista = shoppingCar::where('id_user', $id)->delete();
     }
 
     
