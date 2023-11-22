@@ -42,7 +42,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
         //productos
-Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
+        Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
 
         //proveedores
         Route::post('Proveedor', [providersController::class, 'store']);
