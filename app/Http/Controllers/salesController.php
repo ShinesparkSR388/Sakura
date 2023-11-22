@@ -20,4 +20,11 @@ class salesController extends Controller
         $saleProduct->save();
         return response()->json($saleProduct, 201);
     }
+    public function shoppingHistory($id){
+        $history = sales::where('id_user', $id)->get();
+        if(!$history){
+           return response()->json(['res' => false], 404);
+       }
+       return response()->json($history, 200);
+    }
 }
