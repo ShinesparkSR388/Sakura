@@ -46,9 +46,24 @@ class productsController extends Controller
         $pr = products::all();
 
         if ($pr->isEmpty()) {
-            return response()->json(['error' => 'No hay productos'], 404);
+            return response()->json(['error' => 'No hay productos '], 404);
         }
 
         return response()->json($pr, 200);
     }
+
+    public function destroyProduct($id){
+        $pro = products::find($id);
+
+        if (!$pro) {
+            return response()->json(['error' => 'No hay productos disponibles'], 404);
+        }
+
+       $pro->delete();
+
+        return response()->json(['message' => 'Producto eliminado'], 200);
+
+    }
+
+    
 }
