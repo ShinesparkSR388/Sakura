@@ -7,6 +7,7 @@ use App\Http\Controllers\providersController;
 use App\Http\Controllers\productsController;
 use App\Http\Controllers\salesController;
 use App\Http\Controllers\wishListController;
+use App\Http\Controllers\shoppingController;
 use App\Models\cupons;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
