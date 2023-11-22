@@ -42,6 +42,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::get('/user/{id}', [UserController::class, 'show']);
         Route::delete('/user/{id}', [UserController::class, 'destroy']);
         Route::put('/user/{id}', [UserController::class, 'update']);
+        //Historial de compras de usuario
+        Route::post('/user/{id}/add-wish-list',[UserController::class, 'addwish']);
+        Route::get('/user/{id}/wish-list',[UserController::class, 'wishlist']);
+        Route::delete('/user/{id}/{id_product}/del-wish',[UserController::class, 'deletewish']);
 
         //cupones
         Route::get('Cupones', [cuponController::class, 'get']);
