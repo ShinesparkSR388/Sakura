@@ -31,7 +31,7 @@ class cuponController extends Controller
     }
     public function getCuponsUser($id){
         $cupon = cupons::where('id_user', $id)->get();
-        if(!$cupon){
+        if($cupon->isEmpty()){
            return response()->json(['res' => false], 404);
        }
        return response()->json($cupon, 200);

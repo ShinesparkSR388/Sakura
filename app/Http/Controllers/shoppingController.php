@@ -31,10 +31,10 @@ class shoppingController extends Controller
 
     public function show($id)
     {
-        $carrito = shoppingCar::find($id);
+        $carrito = shoppingCar::where('id_user',$id)->get();
 
-        if (!$carrito) {
-            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        if ($carrito->isEmpty()) {
+            return response()->json(['res' => false], 404);
         }
         return response()->json($carrito, 200);
     }
