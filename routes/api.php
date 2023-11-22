@@ -6,6 +6,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\providersController;
 use App\Http\Controllers\productsController;
 use App\Http\Controllers\salesController;
+use App\Http\Controllers\wishListController;
 use App\Models\cupons;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,10 +43,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::get('/user/{id}', [UserController::class, 'show']);
         Route::delete('/user/{id}', [UserController::class, 'destroy']);
         Route::put('/user/{id}', [UserController::class, 'update']);
-        //Historial de compras de usuario
-        Route::post('/user/{id}/add-wish-list',[UserController::class, 'addwish']);
-        Route::get('/user/{id}/wish-list',[UserController::class, 'wishlist']);
-        Route::delete('/user/{id}/{id_product}/del-wish',[UserController::class, 'deletewish']);
+        //Lista de deseos usuario
+        Route::post('/user/{id}/add-wish-list',[wishListController::class, 'addwish']);
+        Route::get('/user/{id}/wish-list',[wishListController::class, 'wishlist']);
+        Route::delete('/user/{id}/{id_product}/del-wish',[wishListController::class, 'deletewish']);
+
+        //Historial de compras
+        Route::get('/history-shopping/{id}',[salesController::class, 'shoppingHistory']);
 
         //cupones
         Route::get('Cupones', [cuponController::class, 'get']);
