@@ -28,6 +28,7 @@ return new class extends Migration
             $table->float('sell_price', 8,2)->default(0);
             $table->unsignedBigInteger('id_provider');
             $table->foreign('id_provider')->references('id')->on('providers')->onDelete('cascade');
+            $table->integer('rating');
             $table->timestamps();
         });
     }
