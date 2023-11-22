@@ -59,6 +59,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
         //cupones
         Route::get('Cupones', [cuponController::class, 'get']);
+        Route::post('Cupones/add',[cuponController::class, 'createCupon']);
+        Route::get('Cupones/user/{id}',[cuponController::class, 'getCuponsUser']);
 
         //productos
         Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
