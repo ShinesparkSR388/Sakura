@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 use App\Models\User;
 
 class UserController extends Controller
@@ -27,10 +29,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = new User();
-
+        $pass = $request->input('password');
         $user->username = $request->input('username');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->password = Hash::make($pass);
         $user->name = $request->input('name');
         $user->age = $request->input('age');
         $user->gender = true;
@@ -136,5 +138,30 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['message' => 'Usuario eliminado exitosamente'], 200);
+    }
+
+    public function login(Request $request){
+        $user = User::where('username', $request->input('username'))->first();
+
+        if(! $user || ! Hash::check($request->input('password'), $user->password)){
+            throw ValidationException::withMessages([
+                'res' => false,
+                'error' => 'Creedenciales incorrectas'
+            ]);
+        }
+        $user->tokens()->delete();
+        $token = $user->createToken($user->username)->plainTextToken;
+        return response()->json([
+            'res' => true,
+            'token' => $token
+        ], 200);
+
+    }
+    public function logout(Request $request){
+        $request->user()->currentAccessToken()->delete();
+        return response()->json([
+            'res' => true,
+            'message' => 'token eliminado'
+        ], 200);
     }
 }

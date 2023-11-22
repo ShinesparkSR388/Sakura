@@ -22,22 +22,32 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//usuarios
-Route::post('Usuario', [UserController::class, 'store']);
-Route::get('Usuario',[UserController::class, 'getAllUsersInfo']);
-Route::get('/user/{id}', [UserController::class, 'show']);
-Route::delete('/user/{id}', [UserController::class, 'destroy']);
-Route::put('/user/{id}', [UserController::class, 'update']);
+//rutas publicas
+    //usuarios
+    Route::post('Login', [UserController::class, 'login']);
+    Route::post('Usuario', [UserController::class, 'store']);
+    //solo paises
+    Route::get('paises',[WebController::class, 'countries']);
 
-//solo paises
-Route::get('paises',[WebController::class, 'countries']);
+    Route::post('Busqueda', [productsController::class, 'productSearch']);
+//control de acceso (Privado)
+    Route::group(['middleware' => ['auth:sanctum']], function(){
 
-//productos
-Route::post('RegistroProductos', [WebController::class, 'saveProduct']);
-Route::post('Busqueda', [productsController::class, 'productSearch']);
+        //usuarios
+        Route::get('Usuario',[UserController::class, 'getAllUsersInfo']);
+        Route::get('/user/{id}', [UserController::class, 'show']);
+        Route::delete('/user/{id}', [UserController::class, 'destroy']);
+        Route::put('/user/{id}', [UserController::class, 'update']);
 
-//proveedores
-Route::post('Proveedor', [providersController::class, 'store']);
-Route::get('Proveedor', [providersController::class, 'show']);
-Route::put('Proveedor', [providersController::class, 'update']);//no implementado
-Route::delete('Proveedor', [providersController::class, 'delete']);//no implementado
+
+        //productos
+        Route::post('RegistroProductos', [WebController::class, 'saveProduct']);
+
+        //proveedores
+        Route::post('Proveedor', [providersController::class, 'store']);
+        Route::get('Proveedor', [providersController::class, 'show']);
+        Route::put('Proveedor', [providersController::class, 'update']);//no implementado
+        Route::delete('Proveedor', [providersController::class, 'delete']);//no implementado
+    });
+
+
