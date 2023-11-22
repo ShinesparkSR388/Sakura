@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
+use App\Models\cupons;
 
 class UserController extends Controller
 {
@@ -43,8 +44,16 @@ class UserController extends Controller
         $user->refer_code = "A";
         $user->role = 0;
 
+        $cupon = new cupons();
+        $cupon->percent = 0.85;
+        $cupon->value = 0;
+        $cupon->create = date("d-m-Y h:i:s");
+        $cupon->expire = "2023-02-22 12:34:56";
+
         $user->save();
 
+        $cupon->id_user = $user->id;
+        $cupon->save();
         // return response()->json($info);
     }
 
@@ -82,6 +91,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $user = User::find($id);

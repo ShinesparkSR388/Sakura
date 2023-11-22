@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('cupons', function (Blueprint $table) {
             $table->id();
-            $table->integer('percent');
+            $table->float('percent', 8,2)->nullable();
+            $table->float('value', 8,2)->nullable();
             $table->dateTime('create', 0);
             $table->dateTime('expire', 0);
             $table->unsignedBigInteger('id_user');

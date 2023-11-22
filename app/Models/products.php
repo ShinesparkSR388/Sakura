@@ -10,15 +10,17 @@ class products extends Model
     protected $fillable = [
         'code',
         'name',
+        'editorial',
+        'author',
+        'year',
         'category',
         'image',
         'stock',
+        'description',
         'price',
         'sell_price',
-        'tumbnail',
         'id_provider',
     ];
-
     public function provider()
     {
         return $this->belongsTo(Provider::class, 'id_provider');

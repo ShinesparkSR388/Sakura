@@ -23,16 +23,19 @@ class productsController extends Controller
 
         $product->code = $request->input('code');
         $product->name = $request->input('name');
+        $product->editorial = $request->input('editorial');
+        $product->author = $request->input('author');
+        $product->year = $request->input('year');
         $product->category = $request->input('category');
         $product->image = $request->input('image');
         $product->stock = $request->input('stock');
+        $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->sell_price = $request->input('sell_price');
-        $product->thumbnail = $request->input('thumbnail');
         $product->id_provider = $request->input('id_provider');
-    
+
         $product->save();
-    
+
         return response()->json($product, 201);
     }
 
