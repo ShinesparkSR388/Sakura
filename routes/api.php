@@ -8,7 +8,6 @@ use App\Http\Controllers\productsController;
 use App\Http\Controllers\salesController;
 use App\Http\Controllers\wishListController;
 use App\Http\Controllers\shoppingController;
-use App\Models\cupons;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -49,9 +48,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::get('/user/{id}/wish-list',[wishListController::class, 'wishlist']);
         Route::delete('/user/{id}/{id_product}/del-wish',[wishListController::class, 'deletewish']);
 
-        //Historial de compras
-        Route::get('/history-shopping/{id}',[salesController::class, 'shoppingHistory']);
-
         //carrito de compras
         Route::post('/RegistroCar',[shoppingController::class, 'addToCart']);
         Route::get('/Show/{id}',[shoppingController::class, 'show']);
@@ -60,8 +56,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
         //cupones
         Route::get('Cupones', [cuponController::class, 'get']);
-        Route::post('Cupones/add',[cuponController::class, 'createCupon']);
-        Route::get('Cupones/user/{id}',[cuponController::class, 'getCuponsUser']);
+        Route::post('Cupones',[cuponController::class, 'createCupon']);
+        Route::get('Cupones/{id}',[cuponController::class, 'getCupon']);
+        Route::delete('Cupones/{id}',[cuponController::class, 'destroy']);
 
         //productos
         Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
@@ -73,7 +70,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         Route::get('Proveedor', [providersController::class, 'show']);
         Route::put('Proveedor', [providersController::class, 'update']);//no implementado
         Route::delete('Proveedor', [providersController::class, 'delete']);//no implementado
+    
+        //Historial de compras
+        Route::get('/Ventas/{id}',[salesController::class, 'shoppingHistorySearch']);
     });
     //Venta de productos
-    Route::post('GuardarVenta',[salesController::class, 'saveSale']);
+    Route::post('Ventas',[salesController::class, 'saveSale']);
 
