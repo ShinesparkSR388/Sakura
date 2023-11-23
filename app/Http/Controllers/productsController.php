@@ -29,24 +29,38 @@ class productsController extends Controller
     {
         try{
             $product = new products();
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $filename = $file->getClientOriginalName();
 
-            $product->code = $request->input('code');
-            $product->name = $request->input('name');
-            $product->editorial = $request->input('editorial');
-            $product->author = $request->input('author');
-            $product->year = $request->input('year');
-            $product->category = $request->input('category');
-            $product->image = $request->input('image');
-            $product->stock = $request->input('stock');
-            $product->description = $request->input('description');
-            $product->price = $request->input('price');
-            $product->sell_price = $request->input('sell_price');
-            $product->id_provider = $request->input('id_provider');
-            $product->rating = $request->input('rating');
+                $filename = pathinfo($filename, PATHINFO_FILENAME);
+                $name_File = str_replace(" ","_",$filename);
+                $extension = $file->getClientOriginalExtension();
 
+                $picture = date("His") . '-' . $name_File . '.' . $extension;
+
+                $file->move(public_path('Files/'), $picture);
+
+                $direccionFile = '/public/Files/' . $picture;
+
+                $product->code = $request->input('code');
+                $product->name = $request->input('name');
+                $product->editorial = $request->input('editorial');
+                $product->author = $request->input('author');
+                $product->year = $request->input('year');
+                $product->category = $request->input('category');
+                $product->image = $direccionFile;
+                $product->stock = $request->input('stock');
+                $product->description = $request->input('description');
+                $product->price = $request->input('price');
+                $product->sell_price = $request->input('sell_price');
+                $product->id_provider = $request->input('id_provider');
+                $product->rating = $request->input('rating');
+            }
+ 
             $product->save();
 
-            return response()->json($product, 201);
+            return response()->json(['res' => true]);
                 
         }catch(Exception $ex){
             return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
