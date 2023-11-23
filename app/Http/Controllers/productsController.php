@@ -41,7 +41,6 @@ class productsController extends Controller
 
                 $file->move(public_path('Files/'), $picture);
 
-                $direccionFile = '/public/Files/' . $picture;
 
                 $product->code = $request->input('code');
                 $product->name = $request->input('name');
@@ -49,7 +48,7 @@ class productsController extends Controller
                 $product->author = $request->input('author');
                 $product->year = $request->input('year');
                 $product->category = $request->input('category');
-                $product->image = $direccionFile;
+                $product->image = $picture;
                 $product->stock = $request->input('stock');
                 $product->description = $request->input('description');
                 $product->price = $request->input('price');

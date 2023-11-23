@@ -72,11 +72,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             //Historial de compras
             Route::get('/Ventas/{id}',[salesController::class, 'shoppingHistorySearch']);
 
+            //Obtencion de imagenes
+            Route::get('files/{file}', function ($file) {
+                return response()->file(public_path('Files/' . $file));
+            });
+
 //control de acceso (Privado)
-    Route::group(['middleware' => ['auth:sanctum']], function(){
+   /* Route::group(['middleware' => ['auth:sanctum']], function(){
 
 
-    });
+    });*/
     //Venta de productos
     Route::post('Ventas',[salesController::class, 'saveSale']);
 
