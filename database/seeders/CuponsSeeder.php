@@ -38,7 +38,7 @@ class CuponsSeeder extends Seeder
             ],
             [
                 'percent'=> 0,
-                'value'=> 14.00,
+                'value'=> 5.00,
                 'create'=> '15/11/2023',
                 'expire'=> '28/11/2023',
                 'id_user'=> 2

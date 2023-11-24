@@ -45,6 +45,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             Route::get('/user/{id}', [UserController::class, 'show']);
             Route::delete('/user/{id}', [UserController::class, 'destroy']);
             Route::put('/user/{id}', [UserController::class, 'update']);
+            
             //Lista de deseos usuario
             Route::post('/user/{id}/add-wish-list',[wishListController::class, 'addwish']);
             Route::get('/user/{id}/wish-list',[wishListController::class, 'wishlist']);
@@ -65,6 +66,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             //productos
             Route::put('ActualizarProductos', [productsController::class, 'updateProducts']);
             Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
+            Route::delete('Productos/{id}', [productsController::class, 'destroyProduct']);
     
             //proveedores
             Route::post('Proveedor', [providersController::class, 'store']);
