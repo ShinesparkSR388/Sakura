@@ -79,7 +79,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             //Historial de compras
             Route::get('/Ventas/{id}',[salesController::class, 'shoppingHistorySearch']);
             Route::delete('/Ventas/{id}',[salesController::class, 'cancel']);
-            Route::post('/Ventas/{id}/add',[salesController::class, 'saveSale']);
+            Route::post('/Ventas/add',[salesController::class, 'saveSale']);
     });
     //Venta de productos
     Route::post('Ventas',[salesController::class, 'saveSale']);
