@@ -32,65 +32,66 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try{
-            
-
             $user = new User();
-            $pass = $request->input('password');
-            $user->username = $request->input('username');
-            $user->email = $request->input('email');
-            $user->password = Hash::make($pass);
-            $user->name = $request->input('name');
-            $user->age = $request->input('age');
-            $user->gender = true;
-            $user->photo = $request->input('photo');
-            $user->country = $request->input('country');
-            $user->address = $request->input('address');
-            $user->send_address = $request->input('send_address');
-            $permitted_chars = '0123456789ABCDEFGHIJKLMNNOPQRSTUVWXYZ';
-            $user->refer_code = substr(str_shuffle($permitted_chars), 0, 10);
-            $user->role = 0;
-            $request->validate([
-                'username' => 'required|string|unique:users,username',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:6',
-                'name' => 'required|string|unique:users,name',
-                'age' => 'required|integer',
-                'gender' => 'required|boolean',
-                'photo' => 'required|string',
-                'country' => 'required|string',
-                'address' => 'required|string',
-                'send_address' => 'required|string'
-            ]);
+            if($request->hasFile('file')){
+                $file = $request->file('file');
+                $filename = $file->getClientOriginalName();
 
-            $cupon = new cupons();
-            $cupon->percent = 0.15;
-            $cupon->value = 0;
-            $cupon->create = date("d-m-Y h:i:s");
-            $cupon->expire = "9999-02-22 12:34:56";
+                $filename = pathinfo($filename, PATHINFO_FILENAME);
+                $name_File = str_replace(" ","_",$filename);
+                $extension = $file->getClientOriginalExtension();
 
-            $user->save();
+                $picture = date("His") . '-' . $name_File . '.' . $extension;
 
-            $cupon->id_user = $user->id;
-            $cupon->save();
-
-            if($request->input('refer_code') != null){
-                $user2 = User::where('refer_code', $request->input('refer_code'))->first();
-                if($user2 != null){
-                    $cupon2 = new cupons();
-                    $cupon2->percent = 0;
-                    $cupon2->value = 2;
-                    $cupon2->create = date("d-m-Y h:i:s");
-                    $cupon2->expire = "9999-02-22 12:34:56";
-                    $cupon2->id_user = $user2->id;
-                    $cupon2->save();
+                $file->move(public_path('imgUser/'), $picture);
+                
+                $pass = $request->input('password');
+                $user->username = $request->input('username');
+                $user->email = $request->input('email');
+                $user->password = Hash::make($pass);
+                $user->name = $request->input('name');
+                $user->age = $request->input('age');
+                $user->gender = true;
+                $user->photo = 'http://127.0.0.1:8000/api/imgUser/'.$picture;
+                $user->country = $request->input('country');
+                $user->address = $request->input('address');
+                $user->send_address = $request->input('send_address');
+                $permitted_chars = '0123456789ABCDEFGHIJKLMNNOPQRSTUVWXYZ';
+                $user->refer_code = substr(str_shuffle($permitted_chars), 0, 10);
+                $user->role = 0;
+                $user->save();
+    
+                $cupon = new cupons();
+                $cupon->percent = 0.15;
+                $cupon->value = 0;
+                $cupon->create = date("d-m-Y h:i:s");
+                $cupon->expire = "9999-02-22 12:34:56";
+    
+                
+    
+                $cupon->id_user = $user->id;
+                $cupon->save();
+    
+                if($request->input('refer_code') != null){
+                    $user2 = User::where('refer_code', $request->input('refer_code'))->first();
+                    if($user2 != null){
+                        $cupon2 = new cupons();
+                        $cupon2->percent = 0;
+                        $cupon2->value = 2;
+                        $cupon2->create = date("d-m-Y h:i:s");
+                        $cupon2->expire = "9999-02-22 12:34:56";
+                        $cupon2->id_user = $user2->id;
+                        $cupon2->save();
+                    }
+    
                 }
-
+                return response()->json(['res' => true], 200);
             }
 
         }catch(Exception $ex){
             return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
         }
-            return response()->json(['res' => true], 200);
+            
     }
 
     /**
@@ -146,19 +147,6 @@ class UserController extends Controller
             if (!$user) {
                 return response()->json(['error' => 'Usuario no encontrado'], 404);
             }
-
-            $request->validate([
-                'username' => 'required|string|unique:users,username,' . $user->id,
-                'email' => 'required|email|unique:users,email,' . $user->id,
-                'password' => 'required|min:6',
-                'name' => 'required|string|unique:users,name,' . $user->id,
-                'age' => 'required|integer',
-                'gender' => 'required|boolean',
-                'photo' => 'required|string',
-                'country' => 'required|string',
-                'address' => 'required|string',
-                'send_address' => 'required|string'
-            ]);
 
             $user->update([
                 'username' => $request->input('username'),

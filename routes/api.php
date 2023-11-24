@@ -77,14 +77,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             //Historial de compras
             Route::get('/Ventas/{id}',[salesController::class, 'shoppingHistorySearch']);
             Route::delete('/Ventas/{id}',[salesController::class, 'cancel']);
-
-            //Obtencion de imagenes
-            Route::get('files/{file}', function ($file) {
-                return response()->file(public_path('Files/' . $file));
-            });
-
-
     });
     //Venta de productos
     Route::post('Ventas',[salesController::class, 'saveSale']);
+    //Obtencion de imagenes
+    Route::get('files/{file}', function ($file) {
+        return response()->file(public_path('Files/' . $file));
+    });
 

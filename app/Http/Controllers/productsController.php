@@ -119,20 +119,20 @@ class productsController extends Controller
                 return response()->json(['error' => 'Producto no encontrado'], 404);
             }
 
-            $request->validate([
-                'code' => 'required|string|unique:products,code,' . $product->id,
-                'name' => 'required|string|unique:products,name,' . $product->id,
-                'editorial' => 'required|string',
-                'author' => 'required|string',
-                'year' => 'required|integer',
-                'category' => 'required|string',
-                'image' => 'required|string',
-                'stock' => 'required|integer',
-                'description' => 'required|string',
-                'price' => 'required|numeric',
-                'sell_price' => 'required|numeric',
-                'id_provider' => 'required|exists:providers,id',
-            ]);
+            // $request->validate([
+            //     'code' => 'required|string|unique:products,code,' . $product->id,
+            //     'name' => 'required|string|unique:products,name,' . $product->id,
+            //     'editorial' => 'required|string',
+            //     'author' => 'required|string',
+            //     'year' => 'required|integer',
+            //     'category' => 'required|string',
+            //     'image' => 'required|string',
+            //     'stock' => 'required|integer',
+            //     'description' => 'required|string',
+            //     'price' => 'required|numeric',
+            //     'sell_price' => 'required|numeric',
+            //     'id_provider' => 'required|exists:providers,id',
+            // ]);
 
             $product->update([
                 'code' => $request->input('code'),
