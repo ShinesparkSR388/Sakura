@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('password');
             $table->string('name');
             $table->integer('age');
-            $table->boolean('gender');
+            $table->string('gender');
             $table->longText('photo')->nullable();
             $table->string('country');
             $table->string('address');
