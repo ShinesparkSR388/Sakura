@@ -71,8 +71,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             //proveedores
             Route::post('Proveedor', [providersController::class, 'store']);
             Route::get('Proveedor', [providersController::class, 'show']);
-            Route::put('Proveedor', [providersController::class, 'update']);//no implementado
-            Route::delete('Proveedor', [providersController::class, 'delete']);//no implementado
+            Route::put('Proveedor/{id}', [providersController::class, 'update']);//no implementado
+            Route::delete('Proveedor/{id}', [providersController::class, 'delete']);//no implementado
         
             //Historial de compras
             Route::get('/Ventas/{id}',[salesController::class, 'shoppingHistorySearch']);
