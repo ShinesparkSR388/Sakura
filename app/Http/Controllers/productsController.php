@@ -48,7 +48,7 @@ class productsController extends Controller
                 $product->author = $request->input('author');
                 $product->year = $request->input('year');
                 $product->category = $request->input('category');
-                $product->image = $picture;
+                $product->image = 'http://127.0.0.1:8000/api/files/'.$picture;
                 $product->stock = $request->input('stock');
                 $product->description = $request->input('description');
                 $product->price = $request->input('price');
