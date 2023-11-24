@@ -51,7 +51,7 @@ class UserController extends Controller
                 $user->password = Hash::make($pass);
                 $user->name = $request->input('name');
                 $user->age = $request->input('age');
-                $user->gender = true;
+                $user->gender = $request->input('gender');
                 $user->photo = 'http://127.0.0.1:8000/api/imgUser/'.$picture;
                 $user->country = $request->input('country');
                 $user->address = $request->input('address');
