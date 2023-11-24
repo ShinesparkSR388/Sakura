@@ -55,11 +55,11 @@ class productsController extends Controller
                 $product->sell_price = $request->input('sell_price');
                 $product->id_provider = $request->input('id_provider');
                 $product->rating = $request->input('rating');
+                $product->save();
+
+                return response()->json(['res' => true]);
             }
  
-            $product->save();
-
-            return response()->json(['res' => true]);
                 
         }catch(Exception $ex){
             return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
