@@ -135,13 +135,11 @@ class productsController extends Controller
             // ]);
 
             $product->update([
-                'code' => $request->input('code'),
                 'name' => $request->input('name'),
                 'editorial' => $request->input('editorial'),
                 'author' => $request->input('author'),
                 'year' => $request->input('year'),
                 'category' => $request->input('category'),
-                'image' => $request->input('image'),
                 'stock' => $request->input('stock'),
                 'description' => $request->input('description'),
                 'price' => $request->input('price'),
