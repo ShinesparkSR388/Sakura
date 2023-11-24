@@ -12,12 +12,12 @@ class shoppingController extends Controller
     
     public function addToCart(Request $request)
     {
-        $request->validate([
-            'id_product' => 'required|exists:products,id',
-            'id_user' => 'required|exists:users,id',
-            'Cantidad' => 'required|integer|min:1',
-            'Total' => 'required|numeric|min:0', 
-        ]);
+        // $request->validate([
+        //     'id_product' => 'required|exists:products,id',
+        //     'id_user' => 'required|exists:users,id',
+        //     'Cantidad' => 'required|integer|min:1',
+        //     'Total' => 'required|numeric|min:0', 
+        // ]);
 
         $shoppingCart = new shoppingCar();
         $shoppingCart->id_product = $request->input('id_product');
@@ -27,15 +27,12 @@ class shoppingController extends Controller
         
 
            $shoppingCart->save();
+           return response()->json(['res' => true]);
     }
 
     public function show($id)
     {
         $carrito = shoppingCar::where('id_user',$id)->get();
-
-        if ($carrito->isEmpty()) {
-            return response()->json(['res' => false], 404);
-        }
         return response()->json($carrito, 200);
     }
 
@@ -54,6 +51,16 @@ class shoppingController extends Controller
 
     public function destroyShopping($id){ 
         $elementoLista = shoppingCar::where('id_user', $id)->delete();
+    }
+    public function editShopping($id, Request $request){
+        $producto = shoppingCar::find($id);
+        
+        $producto->update([
+            "Cantidad"=> $request->input('cantidad'),
+            "Total"=> $request->input('total')
+        ]);
+        return response()->json(['res' => true]);
+
     }
 
     

@@ -58,6 +58,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             Route::post('/RegistroCar',[shoppingController::class, 'addToCart']);
             Route::get('/Show/{id}',[shoppingController::class, 'show']);
             Route::delete('/Shopping/Delete/{id}',[shoppingController::class, 'destroyShopping']);
+            Route::Put('Shopping/Edit/{id}',[shoppingController:: class, 'editShopping']);
     
     
             //cupones
