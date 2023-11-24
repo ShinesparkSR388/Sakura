@@ -16,13 +16,13 @@ class salesController extends Controller
         try{
             $saleProduct = new sales();
 
-            $request->validate([
-                'id_product' => 'required|integer',
-                'id_user' => 'required|integer',
-                'units' => 'required|integer',
-                'units_price' => 'required|numeric',
-                'sub_total' => 'required|numeric'
-            ]);
+            // $request->validate([
+            //     'id_product' => 'required|integer',
+            //     'id_user' => 'required|integer',
+            //     'units' => 'required|integer',
+            //     'units_price' => 'required|numeric',
+            //     'sub_total' => 'required|numeric'
+            // ]);
             $saleProduct->id_product = $request->input('id_product');
             $saleProduct->id_user = $request->input('id_user');
             $saleProduct->units = $request->input('units');
@@ -78,6 +78,9 @@ class salesController extends Controller
         }catch(Exception $ex){
             return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
         }
+    }
+    public function addSale(Request $request){
+
     }
     
 }
