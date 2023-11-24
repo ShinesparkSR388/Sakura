@@ -13,12 +13,19 @@ class productsController extends Controller
     public function productSearch(Request $request){
 
         try{
-                
-            $book = products::where($request->input('typeSearch'), 'like', '%' . $request->input('varSearch') . '%')->get();
-            if(!$book){
-                return response()->json(['error' => 'Producto no encontrado'], 404);
+            $books= [];
+            $datas = $request->all();
+            foreach ($datas["data"] as $item) {
+                $book = [];
+                if($item["typeSearch"] == "price" || $item["typeSearch"] == "year" ){
+                    
+                    $book = products::whereBetween($item["typeSearch"], [$item["varMin"], $item["varMax"]])->get();
+                }else{
+                    $book = products::where($item["typeSearch"], $item["varSearch"])->get();
+                }
+                $books = $books + $book->all();
             }
-            return response()->json($book, 200);
+            return response()->json(array_unique($books), 200);
                 
         }catch(Exception $ex){
             return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
