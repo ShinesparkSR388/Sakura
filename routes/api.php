@@ -47,6 +47,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             Route::get('/user/{id}', [UserController::class, 'show']);
             Route::delete('/user/{id}', [UserController::class, 'destroy']);
             Route::put('/user/{id}', [UserController::class, 'update']);
+            Route::put('/ActualizarAdmin/{id}', [UserController::class, 'updateAdmin']);
             
             //Lista de deseos usuario
             Route::post('/user/{id}/add-wish-list',[wishListController::class, 'addwish']);

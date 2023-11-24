@@ -169,6 +169,33 @@ class UserController extends Controller
     }
 
 
+    public function updateAdmin(Request $request, $id)
+    {
+        try{
+            $user = User::find($id);
+
+            if (!$user) {
+                return response()->json(['error' => 'Usuario no encontrado'], 404);
+            }
+
+            $user->update([
+                'username' => $request->input('username'),
+                'email' => $request->input('email'),
+                'name' => $request->input('name'),
+                'country' => $request->input('country'),
+                'address' => $request->input('address'),
+                'send_address' => $request->input('send_address')
+            ]);
+
+            return response()->json(['message' => 'Actualizado correctamente'], 404);
+
+        }catch(Exception $ex){
+            return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
+        }
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
