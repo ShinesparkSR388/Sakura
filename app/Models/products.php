@@ -23,6 +23,6 @@ class products extends Model
     ];
     public function provider()
     {
-        return $this->belongsTo(Provider::class, 'id_provider');
+        return $this->belongsTo(providers::class, 'id_provider');
     }
 }

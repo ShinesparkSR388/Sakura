@@ -45,6 +45,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             Route::get('/user/{id}', [UserController::class, 'show']);
             Route::delete('/user/{id}', [UserController::class, 'destroy']);
             Route::put('/user/{id}', [UserController::class, 'update']);
+            
             //Lista de deseos usuario
             Route::post('/user/{id}/add-wish-list',[wishListController::class, 'addwish']);
             Route::get('/user/{id}/wish-list',[wishListController::class, 'wishlist']);
@@ -65,15 +66,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             //productos
             Route::put('ActualizarProductos', [productsController::class, 'updateProducts']);
             Route::post('RegistroProductos', [productsController::class, 'saveProduct']);
+            Route::delete('Productos/{id}', [productsController::class, 'destroyProduct']);
     
             //proveedores
             Route::post('Proveedor', [providersController::class, 'store']);
             Route::get('Proveedor', [providersController::class, 'show']);
-            Route::put('Proveedor', [providersController::class, 'update']);//no implementado
-            Route::delete('Proveedor', [providersController::class, 'delete']);//no implementado
+            Route::put('Proveedor/{id}', [providersController::class, 'update']);//no implementado
+            Route::delete('Proveedor/{id}', [providersController::class, 'delete']);//no implementado
         
             //Historial de compras
             Route::get('/Ventas/{id}',[salesController::class, 'shoppingHistorySearch']);
+            Route::delete('/Ventas/{id}',[salesController::class, 'cancel']);
 
             //Obtencion de imagenes
             Route::get('files/{file}', function ($file) {

@@ -62,4 +62,22 @@ class salesController extends Controller
             return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
         }
     }
+    public function cancel($id){
+        try{
+            $sale = sales::where('id', $id)->first();
+            if(!$sale){
+            return response()->json(['res' => false], 404);
+            }
+            $product = products::where('id', $sale->id_product)->first();
+            $product->update([
+                'stock' => $product->stock + $sale->units
+            ]);
+            $sale->delete();
+        return response()->json(['res' => true], 200);
+       
+        }catch(Exception $ex){
+            return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
+        }
+    }
+    
 }
