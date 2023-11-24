@@ -36,6 +36,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('Productos', [productsController::class, 'showProducts']);
     Route::post('Busqueda', [productsController::class, 'productSearch']);
     
+//control de acceso (Privado)
+    Route::group(['middleware' => ['auth:sanctum']], function(){
+
 
             //usuarios
             Route::get('Usuario',[UserController::class, 'getAllUsersInfo']);
@@ -77,11 +80,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
                 return response()->file(public_path('Files/' . $file));
             });
 
-//control de acceso (Privado)
-   /* Route::group(['middleware' => ['auth:sanctum']], function(){
 
-
-    });*/
+    });
     //Venta de productos
     Route::post('Ventas',[salesController::class, 'saveSale']);
 
