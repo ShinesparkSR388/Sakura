@@ -38,7 +38,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     
 //control de acceso (Privado)
     Route::group(['middleware' => ['auth:sanctum']], function(){
-
+        Route::get('userImage/{file}', function ($file) {
+            return response()->file(public_path('imgUser/' . $file));
+        });
 
             //usuarios
             Route::get('Usuario',[UserController::class, 'getAllUsersInfo']);
