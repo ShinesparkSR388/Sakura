@@ -27,7 +27,7 @@ class salesController extends Controller
             $saleProduct->id_user = $request->input('id_user');
             $saleProduct->units = $request->input('units');
             $saleProduct->unit_price = $request->input('units_price');
-            $saleProduct->sub_total = $request->input('units_price') * $saleProduct->units;
+            $saleProduct->sub_total = $request->input('sub_total');
             if($request->input('id_cupon') != null){
 
                 $cupon = cupons::find($request->input('id_cupon'));
