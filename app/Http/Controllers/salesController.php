@@ -33,6 +33,7 @@ class salesController extends Controller
                 $cupon = cupons::find($request->input('id_cupon'));
                 if($cupon != null){
                     $saleProduct->sub_total = ($saleProduct->sub_total - $cupon->value) - ($saleProduct->sub_total * $cupon->percent);
+                    $cupon->delete();
                 }
             }
 
