@@ -52,6 +52,13 @@ class shoppingController extends Controller
     public function destroyShopping($id){ 
         $elementoLista = shoppingCar::where('id_user', $id)->delete();
     }
+    public function deleteItemCar($id, $id_product){ 
+        try{
+            shoppingCar::where('id_user', $id)->where('id_product', $id_product)->delete();
+        }catch(Exception $ex){
+            return response()->json(['res' => false, 'message'=> 'Error:' . $ex], 200);
+        }
+    }
     public function editShopping($id, Request $request){
         $producto = shoppingCar::find($id);
         

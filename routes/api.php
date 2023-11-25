@@ -59,6 +59,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
             Route::get('/Show/{id}',[shoppingController::class, 'show']);
             Route::delete('/Shopping/Delete/{id}',[shoppingController::class, 'destroyShopping']);
             Route::Put('Shopping/Edit/{id}',[shoppingController:: class, 'editShopping']);
+            Route::delete('Shopping/Delete/{id}/{id_product}',[shoppingController::class, 'deleteItemCar']);
     
     
             //cupones
