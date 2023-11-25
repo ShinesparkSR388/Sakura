@@ -17,13 +17,14 @@ class productsController extends Controller
             $datas = $request->all();
             foreach ($datas["data"] as $item) {
                 $book = [];
-                if($item["typeSearch"] == "price" || $item["typeSearch"] == "year" ){
+                if($item["typeSearch"] == "sell_price" || $item["typeSearch"] == "year" ){
                     
                     $book = products::whereBetween($item["typeSearch"], [$item["varMin"], $item["varMax"]])->get();
                 }else{
-                    $book = products::where($item["typeSearch"], $item["varSearch"])->get();
+                    $book = products::where($item["typeSearch"], 'LIKE',  '%'.$item["varSearch"].'%')->get();
                 }
-                $books = $books + $book->all();
+                $books = array_merge($books, $book->all());
+                
             }
             return response()->json(array_unique($books), 200);
                 

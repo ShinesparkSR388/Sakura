@@ -151,9 +151,9 @@ class UserController extends Controller
             $user->update([
                 'username' => $request->input('username'),
                 'email' => $request->input('email'),
-                'password' => $request->input('password'),
                 'name' => $request->input('name'),
                 'age' => $request->input('age'),
+                'gender' => $request->input('gender'),
                 'country' => $request->input('country'),
                 'address' => $request->input('address'),
                 'send_address' => $request->input('send_address')
